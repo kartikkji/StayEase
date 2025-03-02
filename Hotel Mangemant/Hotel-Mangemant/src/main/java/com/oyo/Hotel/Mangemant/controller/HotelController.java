@@ -20,9 +20,8 @@ public class HotelController {
     @PostMapping("/set")
     public ResponseEntity<Boolean> addHotel(@RequestBody HotelRequest hotel){
 
-        Boolean success =  hotelService.addHotel(hotel);
+        return hotelService.addHotel(hotel);
 
-        return new ResponseEntity<>(success ,HttpStatus.CREATED);
     }
 
     // find hotel by id.

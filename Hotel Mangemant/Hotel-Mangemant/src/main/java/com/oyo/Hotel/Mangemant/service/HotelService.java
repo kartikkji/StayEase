@@ -7,6 +7,8 @@ import com.oyo.Hotel.Mangemant.entity.Hotel;
 import com.oyo.Hotel.Mangemant.repo.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,9 +29,14 @@ public class HotelService {
 
 
 
-    public Boolean addHotel(HotelRequest hotel){
-        hotelRepository.save(setDtoToEntity(hotel));
-        return true;
+    public ResponseEntity<Boolean> addHotel(HotelRequest hotel){
+        try{
+
+            hotelRepository.save(setDtoToEntity(hotel));
+            return new ResponseEntity<>(true, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+        }
     }
 
 
