@@ -41,7 +41,7 @@ public class Hotel {
     @ManyToMany
     ArrayList<Room> roomList = new ArrayList<>();
 
-
+// nothing
 
 
 }
